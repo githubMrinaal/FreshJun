@@ -15,7 +15,7 @@ const countryFlagOutput = document.querySelector(".country-flag");
 const diseasetypeOutput = document.querySelector(".types-of-diseases");
 const airrateOutput = document.querySelector(".air-rate");
 const sanitationOutput = document.querySelector(".Percent-Sanitation");
-const washFacilOutput = document.querySelector(".wash-facil");
+//const washFacilOutput = document.querySelector(".wash-facil");
 
 // Loop through all countries
 countries.forEach(country => {
@@ -80,13 +80,13 @@ countries.forEach(country => {
             diseasetypeOutput.innerText = csvCountryData.tuberculosis !== null ? csvCountryData.tuberculosis : "Data not available";
             airrateOutput.innerText = csvCountryData.airpollution !== null ? csvCountryData.airpollution : "Data not available";
             sanitationOutput.innerText = csvCountryData.sanitation !== null ? csvCountryData.sanitation : "Data not available";
-            washFacilOutput.innerText = csvCountryData.Handwashing !== null ? csvCountryData.Handwashing : "Data not available";
+            //washFacilOutput.innerText = csvCountryData.Handwashing !== null ? csvCountryData.Handwashing : "Data not available";
           } else {
             // Fallback if no CSV data was found
             diseasetypeOutput.innerText = "Data not available";
             airrateOutput.innerText = "Data not available";
             sanitationOutput.innerText = "Data not available";
-            washFacilOutput.innerText = "Data not available";
+            //washFacilOutput.innerText = "Data not available";
           }
           // Output placeholder values for additional data
 
