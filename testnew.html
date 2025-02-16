@@ -1,0 +1,126 @@
+<!-- Add this to your HTML where you want the chatbot to appear -->
+<div id="chat-container">
+    <div id="chat-messages"></div>
+    <div id="input-container">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<style>
+    /* Add styling for the chatbot */
+    #chat-container {
+        width: 400px;
+        height: 500px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin: 20px;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background: #151218;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    .message {
+        margin: 5px 0;
+        padding: 8px;
+        border-radius: 5px;
+    }
+
+    .user-message {
+        background: #151218;
+        text-align: right;
+        color: #fff;
+    }
+
+    .bot-message {
+        background: #151218;
+        text-align: left;
+        color: #fff;
+    }
+
+    #input-container {
+        display: flex;
+        gap: 10px;
+    }
+
+    #user-input {
+        flex: 1;
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px 16px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    // Initialize Gemini
+    const API_KEY = 'AIzaSyAZPonbbNVi95Ih8djjo3RhFfxYDCjVj1g'; // Replace with your Gemini API key
+    const MODEL_NAME = 'gemini-pro';
+
+    async function initializeGemini() {
+        const { GoogleGenerativeAI } = await import("https://esm.run/@google/generative-ai");
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        return genAI.getGenerativeModel({ model: MODEL_NAME });
+    }
+
+    let model;
+    initializeGemini().then(initializedModel => {
+        model = initializedModel;
+    });
+
+    // Chat functions
+    function addMessage(message, isUser = false) {
+        const chatMessages = document.getElementById('chat-messages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+        messageDiv.textContent = message;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function getResponse(prompt) {
+        try {
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            return response.text();
+        } catch (error) {
+            console.error('Error generating response:', error);
+            return "Sorry, I'm having trouble responding right now.";
+        }
+    }
+
+    async function sendMessage() {
+        const userInput = document.getElementById('user-input');
+        const message = userInput.value.trim();
+        
+        if (!message || !model) return;
+
+        addMessage(message, true);
+        userInput.value = '';
+
+        const response = await getResponse(message);
+        addMessage(response);
+    }
+
+    // Handle Enter key
+    document.getElementById('user-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+</script>
