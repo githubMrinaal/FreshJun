@@ -1,4 +1,4 @@
-body {
+ body {
   font-family: sans-serif;
   color: #fff;
 }
@@ -9,8 +9,8 @@ body {
   box-sizing: border-box;
 }
 
-/*Custom Scrollbar Design*/
-/* width */
+Custom Scrollbar Design
+ width 
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -80,7 +80,9 @@ path:hover {
 
 /*Dynamic classes for JavaScript*/
 .side-panel-open {left: 0;}
-.hide {opacity: 0;}
+
+
+.hide {left: -30;}
 
 .close-btn {
   position: absolute;
@@ -178,7 +180,8 @@ button:disabled {
 
 .zoom-out {
   margin-bottom: 10px;
-}
+} 
+
 
 .Disease-List{
     font-size: 10px;
