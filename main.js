@@ -70,11 +70,25 @@ countries.forEach(country => {
           countryNameOutput.innerText = data[0].name.common; 
           countryFlagOutput.src = data[0].flags.png;
 
+          const csvCountryData = csvData.find(item =>
+            item.Location.toLowerCase() === data[0].name.common.toLowerCase()
+          );
+
+          if (csvCountryData) {
+            // For example, use the "tuberculosis" value as a disease indicator;
+            // adjust these as needed for your data
+            diseasetypeOutput.innerText = csvCountryData.tuberculosis !== null ? csvCountryData.tuberculosis : "Data not available";
+            airrateOutput.innerText = csvCountryData.airpollution !== null ? csvCountryData.airpollution : "Data not available";
+            sanitationOutput.innerText = csvCountryData.sanitation !== null ? csvCountryData.sanitation : "Data not available";
+            washFacilOutput.innerText = csvCountryData.Handwashing !== null ? csvCountryData.Handwashing : "Data not available";
+          } else {
+            // Fallback if no CSV data was found
+            diseasetypeOutput.innerText = "Data not available";
+            airrateOutput.innerText = "Data not available";
+            sanitationOutput.innerText = "Data not available";
+            washFacilOutput.innerText = "Data not available";
+          }
           // Output placeholder values for additional data
-          diseasetypeOutput.innerText = "Data not available";
-          airrateOutput.innerText = "Data not available";
-          sanitationOutput.innerText = "Data not available";
-          washFacilOutput.innerText = "Data not available";
 
           // Show the container with country info and hide the loading indicator
           container.classList.remove("hide");
