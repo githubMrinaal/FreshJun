@@ -15,6 +15,8 @@ const countryFlagOutput = document.querySelector(".country-flag");
 const diseasetypeOutput = document.querySelector(".types-of-diseases");
 const airrateOutput = document.querySelector(".air-rate");
 const sanitationOutput = document.querySelector(".Percent-Sanitation");
+const tuberOutput = document.querySelector(".Tuberculosis");
+const malariaOutput = document.querySelector(".Malaria");
 //const washFacilOutput = document.querySelector(".wash-facil");
 
 // Loop through all countries
@@ -77,9 +79,11 @@ countries.forEach(country => {
           if (csvCountryData) {
             // For example, use the "tuberculosis" value as a disease indicator;
             // adjust these as needed for your data
-            diseasetypeOutput.innerText = csvCountryData.tuberculosis !== null ? csvCountryData.tuberculosis : "Data not available";
-            airrateOutput.innerText = csvCountryData.airpollution !== null ? csvCountryData.airpollution : "Data not available";
-            sanitationOutput.innerText = csvCountryData.sanitation !== null ? csvCountryData.sanitation : "Data not available";
+            // diseasetypeOutput.innerText = csvCountryData.tuberculosis !== null ? csvCountryData.tuberculosis : "Data not available";
+            tuberOutput.innerText = csvCountryData.tuberculosis !== null ? `Tuberculosis: ${csvCountryData.tuberculosis} (Per 100,000)`  : `Tuberculosis: Data not available`;
+            malariaOutput.innerText = csvCountryData.malaria !== null ? `Malaria: ${csvCountryData.malaria} (Per 1,000)` : `Malaria: Data not available`;
+            airrateOutput.innerText = csvCountryData.airpollution !== null ? `${csvCountryData.airpollution} (Per 100,000)` : "Data not available";
+            sanitationOutput.innerText = csvCountryData.sanitation !== null ? `${csvCountryData.sanitation}%` : "Data not available";
             //washFacilOutput.innerText = csvCountryData.Handwashing !== null ? csvCountryData.Handwashing : "Data not available";
           } else {
             // Fallback if no CSV data was found
