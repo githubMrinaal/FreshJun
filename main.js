@@ -126,7 +126,7 @@ countries.forEach(country => {
               riskOutput.classList.add("yellow")
             } else if (csvCountryData.sanitation >= 30) {
               riskOutput.innerHTML = 7;
-              riskOutput.classList.add("green")
+              riskOutput.classList.add("red")
             } else if (csvCountryData.sanitation >= 20) {
               riskOutput.innerHTML = 8;
               riskOutput.classList.add("red")
