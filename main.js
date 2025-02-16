@@ -17,6 +17,7 @@ const airrateOutput = document.querySelector(".air-rate");
 const sanitationOutput = document.querySelector(".Percent-Sanitation");
 const tuberOutput = document.querySelector(".Tuberculosis");
 const malariaOutput = document.querySelector(".Malaria");
+const riskOutput = document.querySelector(".risk-level")
 //const washFacilOutput = document.querySelector(".wash-facil");
 
 // Loop through all countries
@@ -85,6 +86,31 @@ countries.forEach(country => {
             airrateOutput.innerText = csvCountryData.airpollution !== null ? `${csvCountryData.airpollution} (Per 100,000)` : "Data not available";
             sanitationOutput.innerText = csvCountryData.sanitation !== null ? `${csvCountryData.sanitation}%` : "Data not available";
             //washFacilOutput.innerText = csvCountryData.Handwashing !== null ? csvCountryData.Handwashing : "Data not available";
+            if (csvCountryData.sanitation == null){
+                riskOutput.innerHTML = "Data not found";
+              }
+              else if (csvCountryData.sanitation >= 90) {
+                riskOutput.innerHTML = 1; // Very Low Risk
+            } else if (csvCountryData.sanitation >= 80) {
+                riskOutput.innerHTML = 2; // Very Low Risk
+            } else if (csvCountryData.sanitation >= 70) {
+                riskOutput.innerHTML = 3;// Moderate-Low Risk
+            } else if (csvCountryData.sanitation >= 60) {
+                riskOutput.innerHTML = 4; // Moderate Risk
+            } else if (csvCountryData.sanitation >= 50) {
+              riskOutput.innerHTML = 5; // Moderate-High Risk
+            } else if (csvCountryData.sanitation >= 40) {
+              riskOutput.innerHTML = 6;
+            } else if (csvCountryData.sanitation >= 30) {
+              riskOutput.innerHTML = 7;
+            } else if (csvCountryData.sanitation >= 20) {
+              riskOutput.innerHTML = 8;
+            } else if (csvCountryData.sanitation >= 10) {
+              riskOutput.innerHTML = 9;
+            } else {
+              riskOutput.innerHTML = 10;
+            }
+          
           } else {
             // Fallback if no CSV data was found
             diseasetypeOutput.innerText = "Data not available";
