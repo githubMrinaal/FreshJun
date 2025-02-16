@@ -108,24 +108,34 @@ countries.forEach(country => {
               }
               else if (csvCountryData.sanitation >= 90) {
                 riskOutput.innerHTML = 1; // Very Low Risk
+                riskOutput.classList.add("green")
             } else if (csvCountryData.sanitation >= 80) {
                 riskOutput.innerHTML = 2; // Very Low Risk
+                riskOutput.classList.add("green")
             } else if (csvCountryData.sanitation >= 70) {
                 riskOutput.innerHTML = 3;// Moderate-Low Risk
+                riskOutput.classList.add("green")
             } else if (csvCountryData.sanitation >= 60) {
                 riskOutput.innerHTML = 4; // Moderate Risk
+                riskOutput.classList.add("yellow")
             } else if (csvCountryData.sanitation >= 50) {
               riskOutput.innerHTML = 5; // Moderate-High Risk
+              riskOutput.classList.add("yellow")
             } else if (csvCountryData.sanitation >= 40) {
               riskOutput.innerHTML = 6;
+              riskOutput.classList.add("yellow")
             } else if (csvCountryData.sanitation >= 30) {
               riskOutput.innerHTML = 7;
+              riskOutput.classList.add("green")
             } else if (csvCountryData.sanitation >= 20) {
               riskOutput.innerHTML = 8;
+              riskOutput.classList.add("red")
             } else if (csvCountryData.sanitation >= 10) {
               riskOutput.innerHTML = 9;
+              riskOutput.classList.add("red")
             } else {
               riskOutput.innerHTML = 10;
+              riskOutput.classList.add("red")
             }
           
           } else {

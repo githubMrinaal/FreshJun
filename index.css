@@ -284,3 +284,15 @@ button:disabled {
 .chat-button:hover {
   background-color: #0056b3;
 }
+
+.red{
+  color: red;
+}
+
+.yellow{
+  color: yellow;
+}
+
+.green{
+  color: green;
+}
