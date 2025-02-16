@@ -11,10 +11,10 @@ const zoomValueOutput = document.querySelector(".zoom-value");
 //Data Outputs
 const countryNameOutput = document.querySelector(".country-name");
 const countryFlagOutput = document.querySelector(".country-flag");
-const cityOutput = document.querySelector(".city");
-const areaOutput = document.querySelector(".area");
-const currencyOutput = document.querySelector(".currency");
-const languagesOutput = document.querySelector(".languages");
+const diseasetypeOutput = document.querySelector(".types-of-diseases");
+const airrateOutput = document.querySelector(".air-rate");
+const sanitationOutput = document.querySelector(".Percenr-Sanitation");
+const washFacilOutput = document.querySelector(".wash-facil");
 
 //Loop through all countries
 countries.forEach(country => {

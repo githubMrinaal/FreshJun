@@ -1,168 +1,185 @@
 body {
-    font-family: sans-serif;
-    color: #fff;
+  font-family: sans-serif;
+  color: #fff;
 }
 
-*   {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Custom Scrollbar design */
-/*width */
+/*Custom Scrollbar Design*/
+/* width */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-/*handle*/
-::-webkit-scrollbar-track{
-    background: #6c6666;
+  width: 10px;
+  height: 10px;
 }
 
-/*Handle on hover */
-::-webkit-scrollbar-thumb{
-    background: #e44747;
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2d2733;
 }
 
-/*Handle on hover */
-::-webkit-scrollbar-thumb:hover{
-    background: #2b2525;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555;
 }
 
-.world-map{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: max-content;
-    height: max-content;
-    min-height: 30em;
-    background-color: #151218;
-    display: flex;
-    justify-self: center;
-    align-items: center;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #dcbfff;
 }
 
-svg{
-    width: 100vw;
-    height: 100vh;
+.world-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+  height: max-content;
+  min-height: 30em;
+  background-color: #151218;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-path{
-    fill: #151218;
-    stroke: #000;
-    transition: 100ms;
+svg {
+  width: 100vw;
+  height: 100vh;
 }
 
-path:hover{
-    fill: #c99aff;}
-
-.side-panel{
-    position: fixed;
-    background-color: #1d1a20;
-    padding: 2em;
-    top: 0;
-    left: 0em;
-    width: 100%;
-    max-width: 30em;
-    height: 100vh;
-    transition:
-        600ms cubic-bezier(0.77, 0, 0.18, 1);
-    overflow: scroll;
-    z-index: 1;
+path {
+  fill: #443d4b;
+  stroke: #dcbfff;
+  transition: 100ms;
 }
 
-.side-panel .container{
-    padding-block: 2em;
-    transition: 200ms ease-out;
+path:hover {
+  fill: #c99aff;
 }
 
-/*dynamic classes for javascript*/
-.close-btn{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 5em;
-    height: 5em;
-    border: none;
-    background-color: #443d4b;
-    color: #fff;
-    transition: 100ms;
-    cursor: pointer;
+.side-panel {
+  position: fixed;
+  background-color: #1d1a20;
+  padding: 2em;
+  top: 0;
+  left: 0em;
+  width: 100%;
+  max-width: 30em;
+  height: 100vh;
+  transition: 600ms cubic-bezier(0.77, 0, 0.18, 1);
+  overflow: scroll;
+  z-index: 1;
 }
 
-.loading{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    transition: 200ms;
+.side-panel .container {
+  padding-block: 2em;
+  transition: 200ms ease-out;
 }
 
-.close-btn i{
-    font-size: 2em;
+/*Dynamic classes for JavaScript*/
+.side-panel-open {left: 0;}
+.hide {opacity: 0;}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5em;
+  height: 5em;
+  border: none;
+  background-color: #443d4b;
+  color: #fff;
+  transition: 100ms;
+  cursor: pointer;
 }
 
-.close-btn:hover{
-    background-color: #c99aff;
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+  transition: 200ms;
 }
 
-.country-flag{
-    width: 60%;
-    max-width: 20em;
-    margin-block: 1em;
+.close-btn i {
+  font-size: 2em;
 }
 
-.side-panel .container > ul > li{
-    margin-bottom:2em;
+.close-btn:hover {
+  background-color: #c99aff;
 }
 
-.side-panel li{
-    margin-bottom: 1em;
-    font-size: 1.2em;
+.country-flag {
+  width: 60%;
+  max-width: 20em;
+  margin-block: 1em;
+}
+
+.side-panel .container > ul {
+  margin-top: 2em;
+  list-style: none;
+}
+
+.side-panel .container > ul > li {
+  margin-bottom: 2em;
+}
+
+.side-panel li {
+  margin-bottom: 1em;
+  font-size: 1.2em;
 }
 
 .side-panel ul ul {
-    margin-top: 1em;
-    font-size: 0.7em;
-    list-style: circle;
-    padding-left: 2em;
+  margin-top: 1em;
+  font-size: 0.7em;
+  list-style: circle;
+  padding-left: 2em;
+}
+
+.side-panel {
+    position: fixed; /* Keeps the panel fixed on the screen */
+    /* Other styles */
   }
   
-  .side-panel strong {
-    color: #dcbfff;
-  }
-  
+  /* Adjusted zoom-controls to position below the close button */
   .zoom-controls {
-    position: fixed;
-    top: 1em;
+    position: absolute;
+    top: 6em; /* Increase this value until it sits below the close button */
     right: 1em;
   }
   
-  .zoom-controls button {
-    display: block;
-    width: 1.5em;
-    height: 1.5em;
-    font-size: 2em;
-    background-color: #443d4b;
-    color: #fff;
-    border: 1px #dcbfff solid;
-    cursor: pointer;
-  }
   
-  .zoom-controls button:hover {
-    background-color: #2e2a33;
-  }
-  
-  /*Disabled button styling*/
-  button:disabled {
-    background-color: #1d1a20;
-    border: 1px #443d4b solid;
-    cursor: default;
-    color: #333;
-  }
-  
-  .zoom-out {
-    margin-bottom: 10px;
-  }
+.zoom-controls button {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 2em;
+  background-color: #443d4b;
+  color: #fff;
+  border: 1px #dcbfff solid;
+  cursor: pointer;
+}
+
+.zoom-controls button:hover {
+  background-color: #2e2a33;
+}
+
+/*Disabled button styling*/
+button:disabled {
+  background-color: #1d1a20;
+  border: 1px #443d4b solid;
+  cursor: default;
+  color: #333;
+}
+
+.zoom-out {
+  margin-bottom: 10px;
+}
+
+.Disease-List{
+    font-size: 10px;
+}
