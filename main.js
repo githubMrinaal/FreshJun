@@ -21,6 +21,23 @@ const riskOutput = document.querySelector(".risk-level")
 //const washFacilOutput = document.querySelector(".wash-facil");
 
 // Loop through all countries
+
+// Get elements
+const chatPanel = document.getElementById("right-panel");
+const openChatBtn = document.getElementById("open-chat");
+const closeChatBtn = document.getElementById("close-chat");
+
+// Event listener to open the chat panel
+openChatBtn.addEventListener("click", () => {
+    chatPanel.classList.add("right-panel-open");
+});
+
+// Event listener to close the chat panel
+closeChatBtn.addEventListener("click", () => {
+    chatPanel.classList.remove("right-panel-open");
+});
+
+
 countries.forEach(country => {
   // Mouse enter event to highlight country
   country.addEventListener("mouseenter", function() { 
@@ -167,3 +184,61 @@ zoomOutBtn.addEventListener("click", () => {
   zoomValueOutput.innerText = zoomValue + "%";
 });
 
+
+
+
+   // Initialize Gemini
+   const API_KEY = 'AIzaSyAZPonbbNVi95Ih8djjo3RhFfxYDCjVj1g'; // Replace with your Gemini API key
+   const MODEL_NAME = 'gemini-pro';
+
+   async function initializeGemini() {
+       const { GoogleGenerativeAI } = await import("https://esm.run/@google/generative-ai");
+       const genAI = new GoogleGenerativeAI(API_KEY);
+       return genAI.getGenerativeModel({ model: MODEL_NAME });
+   }
+
+   let model;
+   initializeGemini().then(initializedModel => {
+       model = initializedModel;
+   });
+
+   // Chat functions
+   function addMessage(message, isUser = false) {
+       const chatMessages = document.getElementById('chat-messages');
+       const messageDiv = document.createElement('div');
+       messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+       messageDiv.textContent = message;
+       chatMessages.appendChild(messageDiv);
+       chatMessages.scrollTop = chatMessages.scrollHeight;
+   }
+
+   async function getResponse(prompt) {
+       try {
+           const result = await model.generateContent(prompt);
+           const response = await result.response;
+           return response.text();
+       } catch (error) {
+           console.error('Error generating response:', error);
+           return "Sorry, I'm having trouble responding right now.";
+       }
+   }
+
+   async function sendMessage() {
+       const userInput = document.getElementById('user-input');
+       const message = userInput.value.trim();
+       
+       if (!message || !model) return;
+
+       addMessage(message, true);
+       userInput.value = '';
+
+       const response = await getResponse(message);
+       addMessage(response);
+   }
+
+   // Handle Enter key
+   document.getElementById('user-input').addEventListener('keypress', (e) => {
+       if (e.key === 'Enter') {
+           sendMessage();
+       }
+   });
