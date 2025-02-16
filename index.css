@@ -64,7 +64,7 @@ path:hover {
   background-color: #1d1a20;
   padding: 2em;
   top: 0;
-  left: 0em;
+  left: -300em;
   width: 100%;
   max-width: 30em;
   height: 100vh;
@@ -79,7 +79,7 @@ path:hover {
 }
 
 /*Dynamic classes for JavaScript*/
-.side-panel-open {left: 0;}
+.side-panel-open {left: 0em;}
 
 
 .hide {left: -30;}
@@ -185,4 +185,6 @@ button:disabled {
 
 .Disease-List{
     font-size: 10px;
+    position: absolute;
+    left: 90px;
 }
